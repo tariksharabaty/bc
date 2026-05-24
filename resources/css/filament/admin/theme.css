@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Poppins', ui-monospace, SFMono-Regular, monospace;
+
+  /* Material Design 3 (M3) border radius tokens */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 28px;
+  --radius-2xl: 32px;
+  --radius-3xl: 40px;
+}
+
+/* ================================================================
+   GOOGLE MATERIAL DESIGN 3 (M3) ARCHITECTURE
+   ================================================================ */
+
+body {
+    background-color: #f7f9fc !important;
+    font-family: var(--font-sans) !important;
+    color: #1c1b1f !important;
+}
+
+.dark body {
+    background-color: #111218 !important;
+    color: #e6e1e5 !important;
+}
+
+/* M3 Fully-Rounded Pill Buttons */
+.fi-btn {
+    border-radius: 9999px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1px !important;
+    padding: 10px 24px !important;
+    box-shadow: none !important;
+    border: none !important;
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1) !important;
+}
+.fi-btn:hover {
+    transform: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+    filter: brightness(0.95);
+}
+.dark .fi-btn:hover {
+    filter: brightness(1.1);
+}
+
+/* M3 Outlined Inputs */
+.fi-input-wrp {
+    border-radius: 12px !important;
+    border: 1px solid #79747e !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    transition: border 0.15s ease, box-shadow 0.15s ease !important;
+}
+.dark .fi-input-wrp {
+    border-color: #938f99 !important;
+}
+.fi-input-wrp:focus-within {
+    border-color: #4f46e5 !important;
+    border-width: 2px !important;
+    box-shadow: none !important;
+}
+.dark .fi-input-wrp:focus-within {
+    border-color: #818cf8 !important;
+}
+
+/* M3 Card Surfaces (Flat with Outline Border) */
+.fi-section {
+    border-radius: 24px !important;
+    border: 1px solid #e1e3e8 !important;
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease !important;
+}
+.dark .fi-section {
+    border-color: #35353a !important;
+    background-color: #1b1b22 !important;
+}
+.fi-section:hover {
+    border-color: #4f46e5 !important;
+}
+.dark .fi-section:hover {
+    border-color: #818cf8 !important;
+}
+
+/* M3 Glassmorphic Sidebar with flat dividers */
+.fi-sidebar {
+    background: #f0f2f7 !important;
+    border-right: 1px solid #e1e3e8 !important;
+}
+.dark .fi-sidebar {
+    background: #15161c !important;
+    border-right-color: #2b2c34 !important;
+}
+
+/* M3 Pill Navigation Highlights */
+.fi-sidebar-item-button {
+    border-radius: 9999px !important;
+    margin: 2px 8px !important;
+    transition: all 0.2s ease !important;
+    font-family: var(--font-heading) !important;
+}
+.fi-sidebar-item-button.fi-active {
+    background-color: #e8def8 !important; /* M3 Primary Container color */
+    color: #1d192b !important;
+    font-weight: 700 !important;
+}
+.dark .fi-sidebar-item-button.fi-active {
+    background-color: #4f378b !important;
+    color: #e8def8 !important;
+}
+
+/* M3 Topbar configuration */
+.fi-topbar {
+    background: rgba(247, 249, 252, 0.9) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid #e1e3e8 !important;
+}
+.dark .fi-topbar {
+    background: rgba(17, 18, 24, 0.9) !important;
+    border-bottom-color: #2b2c34 !important;
+}
+
+/* Typography Overrides (sadık kalınacak hiyerarşi) */
+h1, h2, h3, h4, h5, h6, .fi-header-heading {
+    font-family: var(--font-heading) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* Sayısal Veriler için Poppins */
+.font-mono, td.mono, .font-poppins, [font-poppins], .fi-ta-text-item-label:has(span), span:has(svg) + span {
+    font-family: var(--font-mono) !important;
+}
+
+/* Clean Tonal Table Hover states */
+.fi-ta-record {
+    transition: background-color 0.15s ease !important;
+}
+.fi-ta-record:hover {
+    background-color: rgba(79, 70, 229, 0.04) !important;
+}
+.dark .fi-ta-record:hover {
+    background-color: rgba(129, 140, 248, 0.05) !important;
+}
+
+/* M3 Badge Pill designs */
+.fi-badge {
+    border-radius: 9999px !important;
+    padding: 4px 12px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+}
+
+/* ================================================================
+   INSTAGRAM / GOOGLE STYLE MINIMALIST FOOTER
+   ================================================================ */
+
+.fi-footer-wrapper {
+    margin-top: 40px !important;
+    padding-bottom: 24px !important;
+    width: 100%;
+    clear: both;
+    display: block;
+}
+
+.fi-footer-minimalist {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    border-top: 1px solid #e1e3e8;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    font-family: var(--font-sans);
+}
+.dark .fi-footer-minimalist {
+    border-top-color: #2b2c34;
+}
+
+.fi-footer-copy-text {
+    font-size: 12px;
+    color: #79747e;
+    font-weight: 500;
+    margin: 0;
+}
+.dark .fi-footer-copy-text {
+    color: #938f99;
+}
+
+.fi-footer-links-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fi-footer-links-row a {
+    font-size: 12px;
+    color: #79747e;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s ease;
+}
+.dark .fi-footer-links-row a {
+    color: #938f99;
+}
+
+.fi-footer-links-row a:hover {
+    color: #4f46e5;
+}
+.dark .fi-footer-links-row a:hover {
+    color: #818cf8;
+}
+
+.fi-footer-bullet {
+    color: #c4c7c5;
+    font-size: 10px;
+}
+.dark .fi-footer-bullet {
+    color: #444746;
+}
+
+@media (max-width: 640px) {
+    .fi-footer-minimalist {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+
+/* Standalone switcher removal */
+.fi-user-menu .fi-theme-switcher {
+    display: none !important;
+}
