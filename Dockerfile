@@ -1,21 +1,30 @@
 FROM php:8.2-apache
 
-# Gerekli kütüphaneleri kur
-RUN apt-get update && apt-get install -y libpng-dev libzip-dev zip unzip git sqlite3
-RUN docker-php-ext-install pdo pdo_mysql pdo_sqlite gd zip
+# 1. Tüm sistem bağımlılıklarını kur (GD, ZIP vb. için gerekli olanlar)
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    git \
+    sqlite3 \
+    libsqlite3-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql pdo_sqlite zip
 
-# Composer'ı kur
+# 2. Composer'ı kur
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Çalışma dizini
+# 3. Klasör yapısını ayarla
 WORKDIR /var/www/html
 COPY . .
 
-# 1. Kilidi siliyoruz (ÇOK ÖNEMLİ)
-# 2. --ignore-platform-reqs ile sürüm çakışmalarını tamamen devre dışı bırakıyoruz
-RUN rm -f composer.lock && composer install --no-dev --optimize-autoloader --ignore-platform-reqs
+# 4. Bağımlılıkları güncelle ve temizle
+RUN rm -rf vendor composer.lock && composer update --no-dev --no-scripts --optimize-autoloader
 
-# Veritabanı ve izinler
+# 5. İzinler ve Apache ayarları
 RUN mkdir -p database && touch database/database.sqlite
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
